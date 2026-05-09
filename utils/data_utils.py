@@ -6,27 +6,28 @@ for context on what each function must do and why.
 """
 
 import pandas as pd
-import numpy as np
 
 
 def normalize_height(df: pd.DataFrame, height_col: str = "Height") -> pd.DataFrame:
     """
-    Convert any inch-valued rows to centimetres, then derive Height_m.
+    Normalise height values so that all rows are expressed in centimetres,
+    then add a derived Height_m column (centimetres ÷ 100).
 
-    Detection rule: adult heights in cm cluster 152–196; in inches 59–79.
-    A threshold of 100 cleanly separates the two populations — no valid
-    adult height in inches exceeds 96" (8 ft), and no valid height in cm
-    falls below 100 cm for an adult patient.
+    Known issue
+    -----------
+    The patients.csv file contains a mix of heights recorded in centimetres
+    (typical adult range 152–196) and inches (typical adult range 59–79).
+    There is NO flag column to distinguish them.
+
+    TODO (TICKET-002)
+    -----------------
+    Current implementation blindly divides every value by 100, which means
+    inch-valued rows produce nonsensical Height_m values (e.g. 0.63 m for a
+    65-inch patient).  Detect which rows are in inches and convert them to
+    centimetres BEFORE the division.
     """
     df = df.copy()
-
-    in_inches = df[height_col] < 100
-    df[height_col] = np.where(
-        in_inches,
-        df[height_col] * 2.54,   # inches → cm
-        df[height_col],
-    )
-
+    # Only divides — does NOT handle the inch rows
     df["Height_m"] = df[height_col] / 100
     return df
 

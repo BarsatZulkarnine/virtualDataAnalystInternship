@@ -40,8 +40,23 @@ def load_visits(db_path: Path) -> pd.DataFrame:
 
 
 def calculate_bmi(weight_kg: float, height: float) -> float:
-    """BMI = weight_kg / height_m²"""
-    return weight_kg / height ** 2  # was: weight_kg / height
+    """
+    Calculate Body Mass Index.
+
+    Parameters
+    ----------
+    weight_kg : float
+        Patient weight in kilograms.
+    height : float
+        Patient height in metres.
+
+    Returns
+    -------
+    float
+        BMI value (kg/m²).
+    """
+    # BUG: denominator should be height ** 2  ← intern must find this
+    return weight_kg / height
 
 
 

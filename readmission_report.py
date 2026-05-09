@@ -37,16 +37,16 @@ def load_merged_data(path: Path) -> pd.DataFrame:
 
 
 def parse_dates(df: pd.DataFrame) -> pd.DataFrame:
-    """Convert Discharge_Date and Admission_Date using the safe multi-format parser."""
-    from utils.data_utils import parse_dates_safe  # noqa: F401 (shown inline above)
+    """
+    Convert Discharge_Date and Admission_Date to datetime objects.
 
+    BUG: Assumes all rows are ISO format ('%Y-%m-%d').
+         Raises ValueError when it encounters MM/DD/YYYY or dd-Mon-YYYY rows.
+         See hints/TICKET-001 for guidance.
+    """
     df = df.copy()
-    df["Discharge_Date"] = parse_dates_safe(df["Discharge_Date"])
-    df["Admission_Date"]  = parse_dates_safe(df["Admission_Date"])
-
-    assert df["Discharge_Date"].isna().sum() == 0, "Unparseable Discharge_Date rows remain"
-    assert df["Admission_Date"].isna().sum()  == 0, "Unparseable Admission_Date rows remain"
-
+    df["Discharge_Date"] = pd.to_datetime(df["Discharge_Date"], format="%Y-%m-%d")
+    df["Admission_Date"]  = pd.to_datetime(df["Admission_Date"],  format="%Y-%m-%d")
     return df
 
 
