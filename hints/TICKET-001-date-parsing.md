@@ -54,7 +54,7 @@ This is a common real-world data engineering problem — external systems rarely
 ## Acceptance Criteria
 
 - [ ] `readmission_report.py` runs to completion without raising `ValueError`
-- [ ] All 220 rows in the merged dataset have a valid, non-null `Discharge_Date` and `Admission_Date` after parsing
+- [ ] All rows in the merged dataset have a valid, non-null `Discharge_Date` and `Admission_Date` after parsing
 - [ ] `parse_dates_safe()` in `utils/data_utils.py` passes the test `test_date_parsing_handles_mixed_formats` (handles all three formats)
 - [ ] If a date truly cannot be parsed, the function logs a warning and returns `NaT` rather than crashing
 

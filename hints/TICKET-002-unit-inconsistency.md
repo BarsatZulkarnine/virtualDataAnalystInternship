@@ -14,7 +14,7 @@ After running `analytics_pipeline.py`, the BMI column contains values ranging fr
 The `validate_bmi_range()` function in `utils/validation.py` will flag these rows with:
 
 ```
-[WARN] 140 rows (63.6%) have BMI outside [10, 60].  Observed range: 40.3 – 4218.7
+[WARN] 952 rows (63.5%) have BMI outside [10, 60].  Observed range: 40.3 – 4218.7
 ```
 
 ---

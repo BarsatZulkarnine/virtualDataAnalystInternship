@@ -35,17 +35,26 @@ def normalize_height(df: pd.DataFrame, height_col: str = "Height") -> pd.DataFra
 
 def parse_dates_safe(series: pd.Series) -> pd.Series:
     """
-    Parse a date column that may contain mixed format strings into
-    pandas Timestamps.
+    Parse a mixed-format date column into pandas Timestamps.
 
-    TODO (TICKET-001)
-    -----------------
-    Currently hardcoded to ISO-8601 ('%Y-%m-%d').  The column also contains
-    rows formatted as MM/DD/YYYY and dd-Mon-YYYY, which will raise ValueError.
-    Implement a robust multi-format parser that handles all three formats and
-    returns NaT (with a warning) for any rows that still cannot be parsed.
+    Tries three formats in order, filling only still-NaT rows on each pass.
+    Rows that cannot be parsed in any format become NaT with a warning.
     """
-    return pd.to_datetime(series, format="%Y-%m-%d")
+    result = pd.Series(pd.NaT, index=series.index)
+
+    for fmt in ["%Y-%m-%d", "%m/%d/%Y", "%d-%b-%Y"]:
+        unparsed = result.isna() & series.notna()
+        if not unparsed.any():
+            break
+        result[unparsed] = pd.to_datetime(
+            series[unparsed], format=fmt, errors="coerce"
+        )
+
+    n_failed = result.isna().sum() - series.isna().sum()
+    if n_failed > 0:
+        print(f"[WARN] {n_failed} date(s) could not be parsed — set to NaT")
+
+    return result
 
 
 def flag_blood_pressure(bp_series: pd.Series) -> pd.Series:
