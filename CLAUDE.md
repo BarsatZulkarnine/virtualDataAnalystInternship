@@ -28,7 +28,7 @@ Running the scripts in order surfaces the intentional bugs:
 python patient_data_gen.py      # works fine
 python analytics_pipeline.py   # runs but produces wrong BMI + drops ~30% of patients
 python readmission_report.py   # crashes immediately on date parsing
-pytest tests/test_pipeline.py -v  # 5 of 7 tests fail
+pytest tests/ -v                  # most tests fail until bugs are fixed
 ```
 
 ---

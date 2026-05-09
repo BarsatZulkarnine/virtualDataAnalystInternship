@@ -121,7 +121,7 @@ Run these steps in order. Each step depends on the previous one.
 ```bash
 # Step 1 — Generate synthetic patient data  (run ONCE — files persist on disk)
 python patient_data_gen.py
-#   Produces: data/patients.csv    (~2,400 rows with intentional data quality issues)
+#   Produces: data/patients.csv    (~2,020 rows — 2,000 patients + ~20 injected duplicate IDs)
 #             data/visits.sqlite   (6,000 visit records)
 #   Only rerun if you delete the data/ folder or are told to reset.
 
