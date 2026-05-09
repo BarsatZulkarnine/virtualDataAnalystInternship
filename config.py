@@ -1,5 +1,5 @@
 """
-Project configuration for the St. Gemini Memorial Readmission Pipeline.
+Project configuration for the Scholastica General Hospital Readmission Pipeline.
 Centralises all paths, thresholds, and constants — edit here, not in scripts.
 """
 

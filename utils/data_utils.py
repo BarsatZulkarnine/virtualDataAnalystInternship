@@ -1,5 +1,5 @@
 """
-Data transformation utilities for the St. Gemini Memorial readmission pipeline.
+Data transformation utilities for the Scholastica General Hospital readmission pipeline.
 
 Some functions below are stubs awaiting implementation — see the hints/ tickets
 for context on what each function must do and why.

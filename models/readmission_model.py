@@ -1,5 +1,5 @@
 """
-St. Gemini Memorial Hospital — 30-Day Readmission Prediction Model
+Scholastica General Hospital, Dhaka — 30-Day Readmission Prediction Model
 ------------------------------------------------------------------
 Logistic regression baseline that predicts whether a patient will be
 readmitted within 30 days of discharge.

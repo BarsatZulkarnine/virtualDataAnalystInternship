@@ -1,5 +1,5 @@
 """
-St. Gemini Memorial Hospital — Analytics Pipeline
+Scholastica General Hospital, Dhaka — Analytics Pipeline
 --------------------------------------------------
 Joins patient records (CSV) with visit data (SQLite), computes BMI,
 and writes a merged dataset for downstream reporting and modelling.

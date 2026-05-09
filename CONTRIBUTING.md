@@ -26,7 +26,7 @@ If you modify `patient_data_gen.py`, delete `data/` and regenerate before re-run
 
 | Column | Type | Description |
 |--------|------|-------------|
-| Patient_ID | string | Hospital identifier, format `SGM-NNNNN` |
+| Patient_ID | string | Hospital identifier, format `SGH-NNNNN` |
 | Name | string | Patient full name |
 | Age | int | Age in years at admission |
 | Gender | string | `M` or `F` |

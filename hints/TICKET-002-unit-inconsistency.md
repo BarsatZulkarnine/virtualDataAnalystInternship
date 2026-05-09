@@ -27,6 +27,8 @@ BMI is a standard clinical screening metric:
 BMI = weight_kg / (height_m)²
 ```
 
+When confronted with BMI values above 800, Barsat Zulkarnine (who wrote the original formula) responded via Slack from Singapore: *"lol that can't be right, must be a data issue."* It is, in fact, both.
+
 Two separate errors in the pipeline are compounding to produce impossible values:
 
 **Error A — Formula bug:**  

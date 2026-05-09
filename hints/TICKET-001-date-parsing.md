@@ -21,13 +21,17 @@ The crash occurs inside `parse_dates()` during the very first step after loading
 
 ## Background
 
-The `Discharge_Date` column was sourced from two different ward systems that were not normalised at ingestion time:
+The `Discharge_Date` column was sourced from three different systems that were never normalised at ingestion time:
 
 - The **North Wing** EHR exports dates as ISO-8601: `2024-03-15`
-- The **South Wing** EHR exports dates in US format: `03/15/2024`
+- The **South Wing** EHR (Dr. Irfan Sherrif's Cardiology department) exports in US format: `03/15/2024`
 - Legacy paper records that were retrospectively digitised used a hybrid format: `15-Mar-2024`
 
-All three formats landed in the same CSV column with no provenance flag. This is a common real-world data engineering problem — external systems rarely agree on a date format, and a pipeline that assumes a single format will silently drop or crash on rows from the other systems.
+All three formats landed in the same CSV column with no provenance flag.
+
+When asked, Dr. Irfan's response was: *"The system exports whatever it exports. That's an IT problem."* Sakib Rumman from IT said: *"We just pipe the data through, normalisation is the pipeline's job."* So here we are.
+
+This is a common real-world data engineering problem — external systems rarely agree on a date format, and a pipeline that assumes a single format will silently drop or crash on rows from the other systems.
 
 ---
 

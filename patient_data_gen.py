@@ -1,5 +1,5 @@
 """
-St. Gemini Memorial Hospital — Patient Data Generator
+Scholastica General Hospital, Dhaka — Patient Data Generator
 ------------------------------------------------------
 Generates synthetic patient records and visit logs for the 30-day readmission
 analysis pipeline.
@@ -26,21 +26,21 @@ random.seed(RANDOM_STATE)
 N_PATIENTS  = 2000
 N_VISITS    = 6000
 
-# ── Name pools ─────────────────────────────────────────────────────────────
+# ── Name pools (mix of Bangladeshi and international — reflects Dhaka's patient population)
 _FIRST_NAMES = [
-    "James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", "Linda",
-    "William", "Barbara", "David", "Susan", "Richard", "Jessica", "Joseph", "Sarah",
-    "Thomas", "Karen", "Charles", "Lisa", "Christopher", "Nancy", "Daniel", "Betty",
-    "Matthew", "Margaret", "Anthony", "Sandra", "Mark", "Ashley", "Donald", "Dorothy",
-    "Steven", "Kimberly", "Paul", "Emily", "Andrew", "Donna", "Joshua", "Michelle",
-    "Kenneth", "Carol", "Kevin", "Amanda", "Brian", "Melissa", "George", "Deborah",
+    "Rahim", "Karim", "Farhan", "Nusrat", "Tasnim", "Rafi", "Mehrab", "Zara",
+    "Anika", "Saad", "Tahmid", "Lamia", "Ishmam", "Nadia", "Arif", "Sadia",
+    "Rakib", "Maliha", "Jubayer", "Fahmida", "Tanvir", "Sumaiya", "Rifat", "Nafisa",
+    "Imran", "Tanha", "Shadman", "Humaira", "Nilufar", "Mahir", "Afra", "Zubayer",
+    "Samira", "Rezwan", "Lubna", "Tahsin", "Raisa", "Mushfiq", "Irfan", "Sakib",
+    "Barsat", "Fariha", "Nahid", "Shirin", "Maruf", "Dilruba", "Ashraf", "Parisa",
 ]
 _LAST_NAMES = [
-    "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
-    "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
-    "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson",
-    "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
-    "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores",
+    "Hossain", "Islam", "Rahman", "Ahmed", "Chowdhury", "Khan", "Akter", "Begum",
+    "Malik", "Miah", "Sarkar", "Bhuiyan", "Siddiqui", "Noor", "Kabir", "Uddin",
+    "Zaman", "Haider", "Sheikh", "Alam", "Talukder", "Mondal", "Dewan", "Huq",
+    "Rashid", "Sultana", "Abedin", "Mostafa", "Choudhury", "Reza", "Zulkarnine",
+    "Mahfuz", "Sherrif", "Rumman", "Faruq", "Billah", "Nawaz", "Kamal", "Basher",
 ]
 
 _DIAGNOSES = [
@@ -78,7 +78,7 @@ def _format_date_mixed(dt: pd.Timestamp, fmt_choice: int) -> str:
 
 
 def generate_patients_csv(path: Path) -> None:
-    patient_ids = [f"SGM-{str(i).zfill(5)}" for i in range(1, N_PATIENTS + 1)]
+    patient_ids = [f"SGH-{str(i).zfill(5)}" for i in range(1, N_PATIENTS + 1)]
     names       = [_random_name() for _ in range(N_PATIENTS)]
     ages        = np.random.randint(18, 89, size=N_PATIENTS)
     genders     = np.random.choice(["M", "F"], size=N_PATIENTS)

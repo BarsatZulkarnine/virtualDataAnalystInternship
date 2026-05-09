@@ -13,7 +13,7 @@ Running `check_for_duplicates(patients, 'Patient_ID')` on the raw CSV reveals:
 
 ```
 [WARN] 40 rows share a non-unique 'Patient_ID' (20 distinct IDs affected).
-       Examples: ['SGM-00043', 'SGM-00091', 'SGM-00017', ...]
+       Examples: ['SGH-00043', 'SGH-00091', 'SGH-00017', ...]
 ```
 
 Twenty patient IDs appear twice — once with a blood pressure reading from one source system and once with a different reading from another. Until this is resolved, any BP-based risk stratification (TICKET-004) or BP features in the model (TICKET-007) will be inconsistent depending on which row a downstream operation happens to use.
@@ -27,6 +27,8 @@ Duplicate patient records are one of the most common and consequential data qual
 - A patient is registered in two different ward systems with the same ID
 - A record is exported twice due to an ETL bug
 - A patient re-presents and a new admission is created rather than linked to the existing record
+
+In this case, the likely cause is that Irfan's Cardiology department and the General Medicine department both export patient records independently, and a subset of patients who visited both departments ended up registered twice. Dr. Irfan disputes this. The IT logs suggest otherwise.
 
 In clinical settings, the *consequence* of using the wrong record varies. For blood pressure, the choice matters:
 

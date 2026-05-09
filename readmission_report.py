@@ -1,5 +1,5 @@
 """
-St. Gemini Memorial Hospital — Readmission Report Generator
+Scholastica General Hospital, Dhaka — Readmission Report Generator
 ------------------------------------------------------------
 Reads the merged patient dataset and produces an interactive readmission
 rate report broken down by hospital department.
@@ -22,6 +22,7 @@ Output
     Fix parse_dates() before anything below it will execute.
 """
 
+import webbrowser
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
@@ -77,7 +78,7 @@ def generate_department_chart(summary: pd.DataFrame, output_path: Path) -> None:
         y="Readmission_Rate_Pct",
         color="Readmission_Rate_Pct",
         color_continuous_scale="Reds",
-        title="30-Day Readmission Rate by Department — St. Gemini Memorial Hospital",
+        title="30-Day Readmission Rate by Department — Scholastica General Hospital, Dhaka",
         labels={
             "Readmission_Rate_Pct": "Readmission Rate (%)",
             "Department":           "Clinical Department",
@@ -109,7 +110,12 @@ def run_report() -> None:
     summary = compute_readmission_rates(df)
 
     print(f"\nReadmission Summary:\n{summary.to_string(index=False)}\n")
-    generate_department_chart(summary, REPORTS_DIR / "readmission_by_department.html")
+
+    chart_path = REPORTS_DIR / "readmission_by_department.html"
+    generate_department_chart(summary, chart_path)
+
+    print(f"\n[→] Opening report in your browser...")
+    webbrowser.open(chart_path.resolve().as_uri())
 
 
 if __name__ == "__main__":

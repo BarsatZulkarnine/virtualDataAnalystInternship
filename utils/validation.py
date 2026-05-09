@@ -1,5 +1,5 @@
 """
-Data validation helpers for the St. Gemini Memorial readmission pipeline.
+Data validation helpers for the Scholastica General Hospital readmission pipeline.
 
 These functions are used by analytics_pipeline.py to surface data quality
 issues without crashing the run.  They print warnings; they do not raise.
