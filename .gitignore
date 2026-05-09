@@ -1,0 +1,39 @@
+# Solutions (mentor-only — do not expose to intern)
+hints/solutions/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Data files (generated — run patient_data_gen.py)
+data/*.csv
+data/*.sqlite
+data/*.db
+
+# Reports output
+reports/*.html
+reports/*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env vars
+.env
